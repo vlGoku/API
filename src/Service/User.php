@@ -1,6 +1,8 @@
 <?php
 
 namespace Ml\Api\Service;
+use Ml\Api\Validation\CustomValidation;
+
 class User {
     private string $firstname;
     private string $lastname;
@@ -12,15 +14,20 @@ class User {
     }
 
     public function create(mixed $data): array|object {
-        return [
-            "first_name"=> $this->firstname,
-            "last_name"=> $this->lastname,
-            "age"=> $this->age
-        ];
+        $validate = new CustomValidation($data);
+        if($validate->validate_create()){
+            return ['data' => 'passed validation'];
+        }
+        return ['data' => 'error, validation not passed'];
     }
 
-    public function get(mixed $data): array|object {
-        return ['message' => 'hello from get'];
+    public function get(string $user_id): array|object {
+        $validation = new CustomValidation($user_id);
+        if($validation->validateUuid()){
+            return ['data' => 'passed validation'];
+        } else {
+            return ['data'=> 'failed validation'];
+        }
     }
 
     public function getAll(): array|object {
