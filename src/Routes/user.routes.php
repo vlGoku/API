@@ -32,7 +32,7 @@ enum UserAction: string {
 
 $user_action = UserAction::tryFrom($action);
 if($user_action){
-    echo $user->action->getResponse();
+    echo $user->actio->getResponse();
 } else {
     require '404.routes.php';
 }
