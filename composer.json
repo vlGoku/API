@@ -1,0 +1,13 @@
+{
+    "name": "ml/api",
+    "description": "basic REST API",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Ml\\Api\\": "src/"
+        }
+    },
+    "minimum-stability": "stable",
+    "require": {}
+}
