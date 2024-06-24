@@ -15,9 +15,9 @@ enum UserAction: string {
     
     function getResponse(): string {
         //TODO: GET USER DATA From http body
-        $user_id = 1;
-        $user_data = ['name' => 'test'];
         $user = new User('marko', 'lucic', 24);
+        $user_data = json_decode(file_get_contents('php://input'));
+        $user_id = $_REQUEST['id'] ?? null;
         $response = match($this) {
             self::CREATE => $user->create(['name' => 'test']),
             self::GET => $user->get($user_id),
@@ -32,7 +32,7 @@ enum UserAction: string {
 
 $user_action = UserAction::tryFrom($action);
 if($user_action){
-    echo $user->actio->getResponse();
+    echo $user_action->getResponse();
 } else {
     require '404.routes.php';
 }
