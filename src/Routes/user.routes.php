@@ -15,11 +15,11 @@ enum UserAction: string {
     
     function getResponse(): string {
         //TODO: GET USER DATA From http body
-        $user = new User('marko', 'lucic', 24);
+        $user = new User();
         $user_data = json_decode(file_get_contents('php://input'));
         $user_id = $_REQUEST['id'] ?? null;
         $response = match($this) {
-            self::CREATE => $user->create(['name' => 'test']),
+            self::CREATE => $user->create($user_data),
             self::GET => $user->get($user_id),
             self::REMOVE => $user->remove($user_id),
             self::UPDATE => $user->update($user_data),

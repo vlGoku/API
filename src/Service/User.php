@@ -2,15 +2,11 @@
 
 namespace Ml\Api\Service;
 use Ml\Api\Validation\CustomValidation;
+use Ml\Api\Validation\Exception\ValidationException;
 
 class User {
-    private string $firstname;
-    private string $lastname;
-    private int $age;
-    public function __construct(string $first, string $last, int $age){
-        $this->firstname = $first;
-        $this->lastname = $last;
-        $this->age = $age;
+    public function __construct(){
+
     }
 
     public function create(mixed $data): array|object {
@@ -18,7 +14,7 @@ class User {
         if($validate->validate_create()){
             return ['data' => 'passed validation'];
         }
-        return ['data' => 'error, validation not passed'];
+        throw new ValidationException('Validation failed');
     }
 
     public function get(string $user_id): array|object {
@@ -26,7 +22,7 @@ class User {
         if($validation->validateUuid()){
             return ['data' => 'passed validation'];
         } else {
-            return ['data'=> 'failed validation'];
+            throw new ValidationException('Validation failed, uuid not valid');
         }
     }
 
@@ -34,11 +30,20 @@ class User {
         return  ['message' => 'hello from getAll'];
     }
 
-    public function update(mixed $data): array|object {
-        return  ['message' => 'hello from update'];
+    public function update(mixed $user): array|object {
+        $validation = new CustomValidation($user);
+        if($validation->validate_update()){
+            return ['data'=> 'passed validation'];
+        } else {
+            throw new ValidationException('Validation failed, wrong input data');
+        }
     }
 
-    public function remove(mixed $data): array|object {
-        return  ['message' => 'hello from remove'];
+    public function remove(string $user_id): array {
+        $vaildation = new CustomValidation($user_id);
+        if($vaildation->validateUuid()){
+            return ['valid'];
+        }
+        throw new ValidationException('Validation failed, uuid no valid');
     }
 }
