@@ -34,6 +34,9 @@ class UserModel {
         if(!$user_exists){
             return [];
         }
-        return $user_beans;
+        return array_map(function($bean){
+            unset($bean->id);
+            return $bean->export();
+        }, $user_beans);
     }
 }
