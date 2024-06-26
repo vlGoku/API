@@ -52,22 +52,35 @@ final class UserModel {
         return false;
     }
 
-    public static function getAll(): array {
+    public static function getAll(): ?array {
         $user_beans = R::findAll(self::TABLE_NAME);
         $user_exists = $user_beans && count($user_beans);
         if(!$user_exists){
             return [];
         }
-        return array_map(function($bean){
-            unset($bean->id);
-            return $bean->export();
+        return array_map(function(object $user): ?array{
+            $entity = (new UserEntity())->unSerialize($user->export());
+            return [
+                'uuid' => $entity->get_uuid(),
+                'firstname' => $entity->get_firstname(),
+                'lastname'=> $entity->get_lastname(),
+                'email' => $entity->get_email(),
+                'phone'=> $entity->get_phone(),
+                'created_at' => $entity->get_created_at(),
+            ];
         }, $user_beans);
     }
 
-    public static function getByUuid(string $uuid): ?object {
+    public static function getByUuid(string $uuid): UserEntity {
         $user = R::findOne(self::TABLE_NAME, 'uuid = :uuid', ['uuid' => $uuid ] );
 
-        return $user;
+        return (new UserEntity())->unSerialize($user->export());
+    }
+
+    public static function getByEmail(string $email): UserEntity {
+        $user = R::findOne(self::TABLE_NAME,'email = :email', ['email'=> $email ] );
+
+        return (new UserEntity())->unSerialize($user->export());
     }
 
     public static function remove(string $uuid): bool {

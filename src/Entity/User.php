@@ -64,6 +64,15 @@ class User {
         return $this;
     }
 
+    public function get_password(): string {
+        return $this->password;
+    }
+
+    public function set_password(string $password): self {
+        $this->password = $password;
+        return $this;
+    }
+
     public function get_created_at(): string {
         return $this->created_at;
     }
@@ -71,5 +80,34 @@ class User {
     public function set_created_at(string $created_at): self {
         $this->created_at = $created_at;
         return $this;
+    }
+
+    public function unSerialize(array $user) {
+        if(!empty($user['uuid'])){
+            $this->set_uuid($user['uuid']);
+        }
+        if(!empty($user['firstname'])){
+            $this->set_firstname($user['firstname']);
+        }
+        if(!empty($user['lastname'])){
+            $this->set_lastname($user['lastname']);
+        }
+        if(!empty($user['email'])){
+            $this->set_email($user['email']);
+        }
+        if(!empty($user['phone'])){
+            $this->set_phone($user['phone']);
+        }
+        if(!empty($user['password'])){
+            $this->set_password($user['password']);
+        }
+        if(!empty($user['created_at'])){
+            $this->set_created_at($user['created_at']);
+        }
+        return $this;
+    }
+
+    public function serialize(): array {
+        return get_object_vars($this);
     }
 }

@@ -21,6 +21,7 @@ return array(
     'PH7\\JustHttp\\' => array($vendorDir . '/ph-7/just-http-status-codes/src'),
     'Ml\\Api\\' => array($baseDir . '/src'),
     'GrahamCampbell\\ResultType\\' => array($vendorDir . '/graham-campbell/result-type/src'),
+    'Firebase\\JWT\\' => array($vendorDir . '/firebase/php-jwt/src'),
     'Dotenv\\' => array($vendorDir . '/vlucas/phpdotenv/src'),
     'Brick\\Math\\' => array($vendorDir . '/brick/math/src'),
 );

@@ -3,7 +3,7 @@
         'name' => 'ml/api',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => 'adc76813ec9882184b252c3036bf78aa2a32cbc5',
+        'reference' => 'fcf9c4bb9a9444522dbd82b82ed7bbf2f8e1ff59',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -28,6 +28,15 @@
             'aliases' => array(),
             'dev_requirement' => false,
         ),
+        'firebase/php-jwt' => array(
+            'pretty_version' => 'v6.10.1',
+            'version' => '6.10.1.0',
+            'reference' => '500501c2ce893c824c801da135d02661199f60c5',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../firebase/php-jwt',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
         'gabordemooij/redbean' => array(
             'pretty_version' => 'v5.7.4',
             'version' => '5.7.4.0',
@@ -49,7 +58,7 @@
         'ml/api' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => 'adc76813ec9882184b252c3036bf78aa2a32cbc5',
+            'reference' => 'fcf9c4bb9a9444522dbd82b82ed7bbf2f8e1ff59',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

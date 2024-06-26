@@ -46,7 +46,6 @@ class User
         if ($validation->validateUuid()) {
             if ($user_bean = UserModel::getByUuid($user_id)) {
                 //TODO: Refactor unset
-                unset($user_bean->id);
                 return $user_bean;
             };
             return [];
@@ -80,7 +79,7 @@ class User
             }
             return $user;
         }
-         
+
         throw new ValidationException('Validation failed, wrong input data');
     }
 
