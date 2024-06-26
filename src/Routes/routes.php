@@ -3,6 +3,7 @@
 namespace Ml\Routes;
 use Ml\Api\Validation\Exception\ValidationException;
 use Ml\Api\Routes\Exception\NotAllowedException;
+use Ml\Api\Service\Exception\EmailExistsException;
 use PH7\JustHttp\StatusCode;
 
 use function Ml\Api\Helper\response;
@@ -26,6 +27,12 @@ try {
         'errors' => [
             'message' => $e->getMessage(),
             'code'=> $e->getCode(),
+        ]
+    ]);
+} catch (EmailExistsException $e) {
+    response( data: [
+        'errors' => [
+            'message' => $e->getMessage()
         ]
     ]);
 }

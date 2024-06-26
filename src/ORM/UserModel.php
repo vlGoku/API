@@ -91,4 +91,9 @@ final class UserModel {
         return false;
     }
 
+    public static function email_exists(string $email): bool {
+        $user_bean = R::findOne(self::TABLE_NAME, 'email = :email', ['email' => $email]);
+        return $user_bean !== null;
+    }
+
 }

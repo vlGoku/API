@@ -12,6 +12,7 @@ enum UserAction: string {
     case REMOVE = 'remove';
     case UPDATE = 'update';
     case GET_ALL = 'get_all';
+    case LOGIN = 'login';
     
     
     function getResponse(): string {
@@ -21,7 +22,7 @@ enum UserAction: string {
         $user_id = $_REQUEST['id'] ?? null;
 
         $http_method = match($this){
-            self::CREATE => Http::POST_METHOD,
+            self::CREATE, self::LOGIN => Http::POST_METHOD,
             self::GET, self::GET_ALL => Http::GET_METHOD,
             self::REMOVE => Http::DELETE_METHOD,
             self::UPDATE => Http::PUT_METHOD,
@@ -35,7 +36,8 @@ enum UserAction: string {
             self::GET => $user->get($user_id),
             self::REMOVE => $user->remove($user_id),
             self::UPDATE => $user->update($user_data),
-            self::GET_ALL => $user->getAll()
+            self::GET_ALL => $user->getAll(),
+            self::LOGIN => $user->login($user_data)
         };
         return json_encode($response);
     }

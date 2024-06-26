@@ -2,6 +2,7 @@
 namespace Ml\Api\Service;
 use Ml\Api\Validation\CustomValidation;
 use Ml\Api\Validation\Exception\ValidationException;
+use Ml\Api\Service\Exception\EmailExistsException;
 use Ramsey\Uuid\Uuid;
 use Ml\Api\Entity\User as UserEntity;
 use Ml\Api\ORM\UserModel;
@@ -10,10 +11,13 @@ use PH7\JustHttp\StatusCode;
 
 class User
 {
-    public function __construct()
-    {
+    public function login(mixed $data){
+        $validation = new CustomValidation($data);
+        if($validation->validate_login()){
+            return ['hello'];
+        }
+        throw new ValidationException('invalid login credentials');
     }
-
     public function create(mixed $data): array|object
     {
         $validate = new CustomValidation($data);
@@ -28,6 +32,11 @@ class User
                 ->set_email($data->email)
                 ->set_phone($data->phone)
                 ->set_created_at(date('Y-m-d H:i:s'));
+            //TODO: Set Password
+
+            if (UserModel::email_exists($user_entity->get_email()));{
+              throw new EmailExistsException(sprintf('Email already exists', $user_entity->get_email()));  
+            };
 
             $valid = $user_uuid = UserModel::create($user_entity);
             if (!$valid) {
@@ -91,4 +100,6 @@ class User
         }
         throw new ValidationException('Validation failed, uuid no valid');
     }
+
+
 }

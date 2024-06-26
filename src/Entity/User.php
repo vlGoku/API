@@ -6,7 +6,7 @@ class User {
     private string $uuid;
     private ?string $firstname = null;
     private ?string $lastname = null;
-    private string $email;
+    private ?string $email = null;
     private ?string $password = null;
     private ?string $phone = null;
     private string $created_at;

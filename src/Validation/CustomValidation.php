@@ -6,8 +6,16 @@ use Respect\Validation\Validator as v;
 class CustomValidation {
     const MAX_STRING = 50;
     const MIN_STRING = 3;
+    const MIN_PASSWORD_LEN = 8;
     public function __construct(private readonly mixed $data){
 
+    }
+
+    public function validate_login(): bool {
+        $validation = v::attribute('email', v::email())
+                    ->attribute('password', v::stringType()->length(self::MIN_PASSWORD_LEN));
+
+        return $validation->validate($this->data);
     }
 
     public function validate_create(): bool {
