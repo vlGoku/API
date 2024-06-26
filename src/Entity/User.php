@@ -4,11 +4,11 @@ namespace Ml\Api\Entity;
 
 class User {
     private string $uuid;
-    private string $firstname;
-    private string $lastname;
+    private ?string $firstname = null;
+    private ?string $lastname = null;
     private string $email;
     private ?string $password = null;
-    private string $phone;
+    private ?string $phone = null;
     private string $created_at;
 
     public function get_uuid(): string {
@@ -55,7 +55,7 @@ class User {
         return $this;
     }
 
-    public function get_phone(): string {
+    public function get_phone(): ?string {
         return $this->phone;
     }
 

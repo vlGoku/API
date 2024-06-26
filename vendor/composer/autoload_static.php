@@ -37,6 +37,8 @@ class ComposerStaticInit3a27e280a2853956811aa8cde50aea5c
         array (
             'Psr\\Log\\' => 8,
             'PhpOption\\' => 10,
+            'PH7\\PhpHttpResponseHeader\\' => 26,
+            'PH7\\JustHttp\\' => 13,
         ),
         'M' => 
         array (
@@ -100,6 +102,14 @@ class ComposerStaticInit3a27e280a2853956811aa8cde50aea5c
         'PhpOption\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpoption/phpoption/src/PhpOption',
+        ),
+        'PH7\\PhpHttpResponseHeader\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/ph-7/php-http-response-header/src',
+        ),
+        'PH7\\JustHttp\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/ph-7/just-http-status-codes/src',
         ),
         'Ml\\Api\\' => 
         array (

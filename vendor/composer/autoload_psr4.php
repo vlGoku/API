@@ -17,6 +17,8 @@ return array(
     'Ramsey\\Collection\\' => array($vendorDir . '/ramsey/collection/src'),
     'Psr\\Log\\' => array($vendorDir . '/psr/log/src'),
     'PhpOption\\' => array($vendorDir . '/phpoption/phpoption/src/PhpOption'),
+    'PH7\\PhpHttpResponseHeader\\' => array($vendorDir . '/ph-7/php-http-response-header/src'),
+    'PH7\\JustHttp\\' => array($vendorDir . '/ph-7/just-http-status-codes/src'),
     'Ml\\Api\\' => array($baseDir . '/src'),
     'GrahamCampbell\\ResultType\\' => array($vendorDir . '/graham-campbell/result-type/src'),
     'Dotenv\\' => array($vendorDir . '/vlucas/phpdotenv/src'),
